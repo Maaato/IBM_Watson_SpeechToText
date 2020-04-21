@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="https://www.iserveradmin.com/wp-content/uploads/2017/08/text-to-speech-iserveradmin.com_.png" width="30" height="30" class="d-inline-block align-top" alt="Speech To Text Icon" style="transform: scale(1.2);"> &nbsp; &nbsp;Speech To Text
+        - IBM Watson
+    </a>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Probar!<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ejemplos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Docs</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><b>Opciones de Archivo</b></div>
+                <div class="card-body">
+                    <form [formGroup]="speechToTextForm" (ngSubmit)="onSubmit(speechToTextForm.value)">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="formGroupUploadForm">Audio File</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="handleFileInput($event.target.files)" accept="audio/mp3,audio/flac">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupSelectIdioma">Idioma</label>
+                            <select class="custom-select" formControlName="idioma">
+                              <option value="default" disabled [selected]="true">Seleccionar</option>
+                              <option value="es-ES_BroadbandModel">Español (castellano)</option>
+                              <option value="es-CL_BroadbandModel">Español (chileno)</option>
+                              <option value="es-AR_BroadbandModel">Español (argentino)</option>
+                              <option value="es-CO_BroadbandModel">Español (colombiano)</option>
+                              <option value="es-MX_BroadbandModel">Español (mexicano)</option>
+                              <option value="es-PE_BroadbandModel">Español (peruano)</option>
+                              <option value="en-GB_BroadbandModel">Inglés (Reino Unido)</option>
+                              <option value="en-US_BroadbandModel">Inglés (Estados Unidos)</option>
+                              <option value="ar-AR_BroadbandModel">Árabe</option>
+                              <option value="pt-BR_BroadbandModel">Portugués de Brasil</option>
+                              <option value="zh-CN_BroadbandModel">Chino (mandarín)</option>
+                              <option value="fr-FR_BroadbandModel">Francés</option>
+                              <option value="de-DE_BroadbandModel">Alemán</option>
+                              <option value="ja-JP_BroadbandModel">Japonés</option>
+                              <option value="ko-KR_BroadbandModel">Coreano</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputMaxAlternativas" class="col-sm-8 col-form-label">Maximo de Alternativas(1-5):</label>
+                            <div class="col-sm-4">
+                                <input [min]="1" [max]="5" type="number" id="inputMaxAlternativas" class="form-control col-lg-8" required formControlName="maxAlternativas">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" [ngModel]="false" class="custom-control-input" id="customCheckTimeStamp" formControlName="timeStamp">
+                                <label class="custom-control-label" for="customCheckTimeStamp">Timestamps</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary bg-primary" type="submit"><b>Translate!</b></button>
+                    </form>
+                </div>
+            </div>
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><b>Timestamp Palabras</b></div>
+                <div class="card-body">
+                    <div class="row align-center">
+                        <div class="card text-white bg-primary m-1" *ngFor="let timestamps of timestampsResponse,let x = index" style="max-width: 18rem;">
+                            <div class="card-header">ini: {{timestamps[1]}}</div>
+                            <div class="card-body">
+                                <p class="card-text">Palabra #{{x+1}}: {{timestamps[0]}}</p>
+                            </div>
+                            <div class="card-footer">fin: {{timestamps[2]}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><b>Resultado</b></div>
+                <div class="card-body">
+                    <div class="card text-white bg-primary mb-3" *ngFor="let translates of translateResponse,let i = index">
+                        <div class="card-header">Translate #{{i + 1}}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{translates.transcript}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
