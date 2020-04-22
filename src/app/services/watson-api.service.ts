@@ -9,7 +9,7 @@ export class WatsonAPIService {
   constructor(private http: HttpClient) {}
 
   postFile(fileToUpload: File, speechToTextOptions: any): Observable<any> {
-    let endpoint = "WATSON_URL_API"; // Insert WATSON API URL
+    let endpoint = "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/0b0d5106-3e8b-4555-97ee-856e42d87145/v1/recognize";
     let params = new HttpParams();
     if (speechToTextOptions.idioma) {
       params = params.append("model", speechToTextOptions.idioma);
@@ -28,7 +28,7 @@ export class WatsonAPIService {
     const headers = new HttpHeaders({
       "Content-Type": `audio/${fileToUpload.name.substring(fileToUpload.name.lastIndexOf('.')+1)}`,
       Authorization:
-        "Basic " + btoa(`apikey:WATSON_API_KEY`), // Insert WATSON API KEY
+        "Basic " + btoa(`apikey:tHkkJ7C-aNXblWkgtXsQKn4aSLd4kyp1V6oZ5DJ2I21v`), // Insert WATSON API KEY
     });
     const formData: FormData = new FormData();
     formData.append("fileKey", fileToUpload, fileToUpload.name);
