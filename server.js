@@ -3,9 +3,9 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static('./dist/speech-to-text-frontend'));
+app.use(express.static('./dist/speechToTextFrontend'));
 app.get('/', function (req, res) {
-  res.sendFile('index.html', { root: 'dist/speech-to-text-frontend/'});
+  res.sendFile('index.html', { root: 'dist/speechToTextFrontend/'});
 });
 
 app.listen(process.env.PORT);
