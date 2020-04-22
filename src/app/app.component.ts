@@ -33,10 +33,8 @@ export class AppComponent {
       .postFile(this.fileToUpload, speechToTextOptions)
       .subscribe(
         (data) => {
-          console.log("Watson Response:", data.results[0].alternatives);
           this.translateResponse = data.results[0].alternatives;
           this.timestampsResponse = data.results[0].alternatives[0].timestamps;
-          console.log(this.timestampsResponse);
         },
         (err) => {
           console.log("Error:", err);

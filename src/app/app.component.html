@@ -1,18 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">
-        <img src="https://www.iserveradmin.com/wp-content/uploads/2017/08/text-to-speech-iserveradmin.com_.png" width="30" height="30" class="d-inline-block align-top" alt="Speech To Text Icon" style="transform: scale(1.2);"> &nbsp; &nbsp;Speech To Text
+        <img src="../assets/imgs/WatsonLogo.png" width="30" class="d-inline-block align-top" alt="Speech To Text Icon" style="transform: scale(1.7);"> &nbsp; &nbsp;Speech To Text
         - IBM Watson
     </a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Probar!<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="https://watson-developer-cloud.github.io/doc-tutorial-downloads/speech-to-text/audio-file.flac">Example File</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Ejemplos</a>
+                <a class="nav-link" href="https://cloud.ibm.com/apidocs/speech-to-text" target="_blank">Docs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Docs</a>
+                <a class="nav-link" href="https://github.com/Maaato/IBM_Watson_SpeechToText" target="_blank">Source&nbsp;<img src="https://www.stickpng.com/assets/images/5847f98fcef1014c0b5e48c0.png" width="30" height="30" class="d-inline-block align-top" alt="Github Icon" style="transform: scale(0.8);filter: invert(100%);"></a>
             </li>
         </ul>
     </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="formGroupSelectIdioma">Idioma</label>
-                            <select class="custom-select" formControlName="idioma">
+                            <select id="formGroupSelectIdioma" class="custom-select" formControlName="idioma">
                               <option value="default" disabled [selected]="true">Seleccionar</option>
                               <option value="es-ES_BroadbandModel">Español (castellano)</option>
                               <option value="es-CL_BroadbandModel">Español (chileno)</option>
@@ -51,6 +51,7 @@
                               <option value="ja-JP_BroadbandModel">Japonés</option>
                               <option value="ko-KR_BroadbandModel">Coreano</option>
                             </select>
+                            <small id="formGroupSelectIdioma" class="form-text text-white"><i>Default : Inglés (Estados Unidos)</i></small>
                         </div>
                         <div class="form-group row">
                             <label for="inputMaxAlternativas" class="col-sm-8 col-form-label">Maximo de Alternativas(1-5):</label>
@@ -61,7 +62,7 @@
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" [ngModel]="false" class="custom-control-input" id="customCheckTimeStamp" formControlName="timeStamp">
-                                <label class="custom-control-label" for="customCheckTimeStamp">Timestamps</label>
+                                <label class="custom-control-label" for="customCheckTimeStamp">Timestamps de Palabras</label>
                             </div>
                         </div>
                         <button class="btn btn-primary bg-primary" type="submit"><b>Translate!</b></button>
@@ -69,15 +70,15 @@
                 </div>
             </div>
             <div class="card text-white bg-dark mb-3">
-                <div class="card-header"><b>Timestamp Palabras</b></div>
+                <div class="card-header"><b>Timestamp de Palabras</b></div>
                 <div class="card-body">
                     <div class="row align-center">
                         <div class="card text-white bg-primary m-1" *ngFor="let timestamps of timestampsResponse,let x = index" style="max-width: 18rem;">
-                            <div class="card-header">ini: {{timestamps[1]}}</div>
+                            <div class="card-header">Inicio: {{timestamps[1]}}</div>
                             <div class="card-body">
-                                <p class="card-text">Palabra #{{x+1}}: {{timestamps[0]}}</p>
+                                <p class="card-text">{{timestamps[0]}}</p>
                             </div>
-                            <div class="card-footer">fin: {{timestamps[2]}}</div>
+                            <div class="card-footer">Fin: {{timestamps[2]}}</div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +89,8 @@
                 <div class="card-header"><b>Resultado</b></div>
                 <div class="card-body">
                     <div class="card text-white bg-primary mb-3" *ngFor="let translates of translateResponse,let i = index">
-                        <div class="card-header">Translate #{{i + 1}}</div>
+                        <div class="card-header" *ngIf="i == 0">Translate #{{i + 1}}<i> (Best Translate)</i></div>
+                        <div class="card-header" *ngIf="i >= 1">Translate #{{i + 1}}</div>
                         <div class="card-body">
                             <p class="card-text">{{translates.transcript}}</p>
                         </div>
@@ -98,5 +100,4 @@
         </div>
     </div>
 </div>
-
 <router-outlet></router-outlet>
