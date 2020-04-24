@@ -1,27 +1,55 @@
-# SpeechToTextFrontend
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/Maaato/IBM_Watson_SpeechToText">
+    <img src="https://secure.meetupstatic.com/photos/event/c/7/5/d/600_474351037.jpeg" alt="Logo">
+  </a>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+  <h3 align="center">Speech To Text With IBM Watson API</h3>
 
-## Development server
+  <p align="center">
+    Ejemplo de transcripción de voz a texto
+    <br />
+    <a href="https://ibm-watson-audio-a-texto.herokuapp.com">Heroku Demo</a>
+  </p>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<!-- ABOUT THE PROJECT -->
+## About The Project
+Aplicación de transcripción de voz a texto implementada con Angular que consume la API de voz a texto de IBM Watson. Permite la carga de archivos para la transcripción.
 
-## Code scaffolding
+### Built With
+* [Bootstrap](https://getbootstrap.com)
+* [Angular](https://angular.io)
+* [Watson API](https://www.ibm.com/cl-es/cloud/watson-speech-to-text)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<!-- GETTING STARTED -->
+## Getting Started
+### Prerequisites
 
-## Build
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+```sh
+npm install npm@latest -g
+```
+* Angular CLI
+```sh
+npm install -g @angular/cli
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Installation
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. Obtener API endpoint Y API Key gratuita de Watson [https://www.ibm.com/cl-es/cloud/watson-speech-to-text](https://www.ibm.com/cl-es/cloud/watson-speech-to-text)
+2. Clonar Repo
+```sh
+git clone https://github.com/Maaato/IBM_Watson_SpeechToText.git
+```
+3. Install NPM packages
+```sh
+npm install
+```
+4. Colocar API Key y API endpoint en `watson-api.service`
+3. iniciar Server
+```sh
+ng serve
+```

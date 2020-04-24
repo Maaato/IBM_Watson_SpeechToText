@@ -28,59 +28,47 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="formGroupUploadForm">Audio File</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="handleFileInput($event.target.files)" accept="audio/mp3,audio/flac">
+                                <input type="file" class="form-control-file" required id="exampleFormControlFile1" (change)="handleFileInput($event.target.files)" accept="audio/mp3,audio/flac,audio/wav">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="formGroupSelectIdioma">Idioma</label>
-                            <select id="formGroupSelectIdioma" class="custom-select" formControlName="idioma">
+                            <select id="formGroupSelectIdioma" class="custom-select" formControlName="idioma" required>
                               <option value="default" disabled [selected]="true">Seleccionar</option>
-                              <option value="es-ES_BroadbandModel">Español (castellano)</option>
-                              <option value="es-CL_BroadbandModel">Español (chileno)</option>
-                              <option value="es-AR_BroadbandModel">Español (argentino)</option>
-                              <option value="es-CO_BroadbandModel">Español (colombiano)</option>
-                              <option value="es-MX_BroadbandModel">Español (mexicano)</option>
-                              <option value="es-PE_BroadbandModel">Español (peruano)</option>
-                              <option value="en-GB_BroadbandModel">Inglés (Reino Unido)</option>
-                              <option value="en-US_BroadbandModel">Inglés (Estados Unidos)</option>
-                              <option value="ar-AR_BroadbandModel">Árabe</option>
-                              <option value="pt-BR_BroadbandModel">Portugués de Brasil</option>
-                              <option value="zh-CN_BroadbandModel">Chino (mandarín)</option>
-                              <option value="fr-FR_BroadbandModel">Francés</option>
-                              <option value="de-DE_BroadbandModel">Alemán</option>
-                              <option value="ja-JP_BroadbandModel">Japonés</option>
-                              <option value="ko-KR_BroadbandModel">Coreano</option>
+                              <option value="es-ES_NarrowbandModel">Español (castellano)</option>
+                              <option value="es-CL_NarrowbandModel">Español (chileno)</option>
+                              <option value="es-AR_NarrowbandModel">Español (argentino)</option>
+                              <option value="es-CO_NarrowbandModel">Español (colombiano)</option>
+                              <option value="es-MX_NarrowbandModel">Español (mexicano)</option>
+                              <option value="es-PE_NarrowbandModel">Español (peruano)</option>
+                              <option value="en-GB_NarrowbandModel">Inglés (Reino Unido)</option>
+                              <option value="en-US_NarrowbandModel">Inglés (Estados Unidos)</option>
+                              <option value="ar-AR_NarrowbandModel">Árabe</option>
+                              <option value="pt-BR_NarrowbandModel">Portugués de Brasil</option>
+                              <option value="zh-CN_NarrowbandModel">Chino (mandarín)</option>
+                              <option value="fr-FR_NarrowbandModel">Francés</option>
+                              <option value="de-DE_NarrowbandModel">Alemán</option>
+                              <option value="ja-JP_NarrowbandModel">Japonés</option>
+                              <option value="ko-KR_NarrowbandModel">Coreano</option>
                             </select>
                             <small id="formGroupSelectIdioma" class="form-text text-white"><i>Default : Inglés (Estados Unidos)</i></small>
                         </div>
-                        <div class="form-group row">
+                       <!-- <div class="form-group row">
                             <label for="inputMaxAlternativas" class="col-sm-8 col-form-label">Maximo de Alternativas(1-5):</label>
                             <div class="col-sm-4">
                                 <input [min]="1" [max]="5" type="number" id="inputMaxAlternativas" class="form-control col-lg-8" required formControlName="maxAlternativas">
+                                <small id="inputMaxAlternativas" class="form-text text-white"><i>Default : 1</i></small>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <!--<div class="form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" [ngModel]="false" class="custom-control-input" id="customCheckTimeStamp" formControlName="timeStamp">
                                 <label class="custom-control-label" for="customCheckTimeStamp">Timestamps de Palabras</label>
                             </div>
-                        </div>
+                        </div>-->
+                        <app-loader></app-loader>
                         <button class="btn btn-primary bg-primary" type="submit"><b>Translate!</b></button>
                     </form>
-                </div>
-            </div>
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-header"><b>Timestamp de Palabras</b></div>
-                <div class="card-body">
-                    <div class="row align-center">
-                        <div class="card text-white bg-primary m-1" *ngFor="let timestamps of timestampsResponse,let x = index" style="max-width: 18rem;">
-                            <div class="card-header">Inicio: {{timestamps[1]}}</div>
-                            <div class="card-body">
-                                <p class="card-text">{{timestamps[0]}}</p>
-                            </div>
-                            <div class="card-footer">Fin: {{timestamps[2]}}</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -88,11 +76,11 @@
             <div class="card text-white bg-dark mb-3">
                 <div class="card-header"><b>Resultado</b></div>
                 <div class="card-body">
-                    <div class="card text-white bg-primary mb-3" *ngFor="let translates of translateResponse,let i = index">
+                    <div class="card text-white bg-primary mb-3" *ngFor="let transcript of transcriptAlternatives,index as i">
                         <div class="card-header" *ngIf="i == 0">Translate #{{i + 1}}<i> (Best Translate)</i></div>
                         <div class="card-header" *ngIf="i >= 1">Translate #{{i + 1}}</div>
                         <div class="card-body">
-                            <p class="card-text">{{translates.transcript}}</p>
+                            <p class="card-text">{{transcript.alternatives[0].transcript}}</p>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,8 @@ export class AppComponent {
   title = "Speech To Text - IBM Watson";
   speechToTextForm;
   fileToUpload: File = null;
-  translateResponse;
+  transcriptAlternatives;
+  transcriptResult;
   timestampsResponse;
   constructor(
     private formBuilder: FormBuilder,
@@ -20,11 +21,11 @@ export class AppComponent {
     this.speechToTextForm = this.formBuilder.group({
       idioma: "",
       maxAlternativas: "",
-      timeStamp: Boolean,
+      //timeStamp: Boolean,
     });
   }
 
-  handleFileInput(files: FileList) {
+  async handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
   }
 
@@ -33,8 +34,7 @@ export class AppComponent {
       .postFile(this.fileToUpload, speechToTextOptions)
       .subscribe(
         (data) => {
-          this.translateResponse = data.results[0].alternatives;
-          this.timestampsResponse = data.results[0].alternatives[0].timestamps;
+          this.transcriptAlternatives = data.results; 
         },
         (err) => {
           console.log("Error:", err);
