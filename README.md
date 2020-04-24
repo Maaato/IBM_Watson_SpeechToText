@@ -48,7 +48,7 @@ git clone https://github.com/Maaato/IBM_Watson_SpeechToText.git
 ```sh
 npm install
 ```
-4. Colocar API Key y API endpoint en `watson-api.service`
+4. Colocar API Key y API endpoint en `enviroments`
 3. iniciar Server
 ```sh
 ng serve
