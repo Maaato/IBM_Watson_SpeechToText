@@ -10,7 +10,7 @@
   <p align="center">
     Ejemplo de transcripción de voz a texto
     <br />
-    <a href="https://ibm-watson-audio-a-texto.herokuapp.com">Heroku Demo</a>
+    <a href="https://frontend-speech-to-text.herokuapp.com">Heroku Demo</a>
   </p>
 </p>
 
